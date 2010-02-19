@@ -1,6 +1,6 @@
 %define	major 0
-%define	libname %mklibname cap %{major}
-%define develname %mklibname cap -d
+%define	libname %mklibname cap-ng %{major}
+%define develname %mklibname cap-ng -d
 
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
