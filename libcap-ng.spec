@@ -1,11 +1,11 @@
 %define	major 0
-%define	libname %mklibname %{name} %{major}
-%define develname %mklibname %{name} -d
+%define	libname %mklibname cap %{major}
+%define develname %mklibname cap -d
 
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
 Version:	0.6.2
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://people.redhat.com/sgrubb/libcap-ng
@@ -24,6 +24,7 @@ Libcap-ng is a library that makes using posix capabilities easier.
 %package -n	%{libname}
 Summary:	Shared %{name} library
 Group:		System/Libraries
+Obsoletes:	%{_lib}libcap-ng0
 
 %description -n	%{libname}
 Libcap-ng is a library that makes using posix capabilities easier.
@@ -36,6 +37,7 @@ Group:		Development/C
 Requires:	kernel-headers >= 2.6.11
 Requires:	%{libname} = %{version}
 Provides:	%{name}-devel = %{version}-%{release}
+Obsoletes:	%{_lib}libcap-ng-devel
 
 %description -n	%{develname}
 Libcap-ng is a library that makes using posix capabilities easier.
