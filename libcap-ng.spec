@@ -4,14 +4,12 @@
 
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
-Version:	0.6.2
-Release:	%mkrel 2
+Version:	0.6.3
+Release:	%mkrel 1
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://people.redhat.com/sgrubb/libcap-ng
 Source0:	http://people.redhat.com/sgrubb/libcap-ng/%{name}-%{version}.tar.gz
-Patch1:		libcap-ng-0.6.3-euid.patch
-Patch2:		libcap-ng-0.6.3-setpcap.patch
 BuildRequires:	kernel-headers >= 2.6.11
 BuildRequires:	attr-devel
 BuildRequires:	python-devel
@@ -65,8 +63,6 @@ file system based capabilities.
 %prep
 
 %setup -q
-%patch1 -p1
-%patch2 -p1
 
 %build
 %configure2_5x \
