@@ -4,7 +4,7 @@
 
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
-Version:	0.6.4
+Version:	0.6.5
 Release:	%mkrel 1
 License:	LGPLv2+
 Group:		System/Libraries
@@ -66,7 +66,9 @@ file system based capabilities.
 
 %build
 %configure2_5x \
-    --libdir=/%{_lib}
+    --libdir=/%{_lib} \
+    --with-python
+
 %make
 
 %install
@@ -122,4 +124,3 @@ rm -rf %{buildroot}
 %doc COPYING
 %attr(0755,root,root) %{_bindir}/*
 %attr(0644,root,root) %{_mandir}/man8/*
-
