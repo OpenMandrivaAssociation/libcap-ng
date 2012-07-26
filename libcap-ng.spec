@@ -4,8 +4,8 @@
 
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
-Version:	0.6.6
-Release:	%mkrel 1
+Version:	0.7
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://people.redhat.com/sgrubb/libcap-ng
@@ -14,7 +14,6 @@ BuildRequires:	kernel-headers >= 2.6.11
 BuildRequires:	attr-devel
 BuildRequires:	python-devel
 BuildRequires:	swig
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Libcap-ng is a library that makes using posix capabilities easier.
@@ -72,7 +71,6 @@ file system based capabilities.
 %make
 
 %install
-rm -rf %{buildroot}
 
 %makeinstall_std
 
@@ -90,24 +88,11 @@ mv %{buildroot}/%{_lib}/pkgconfig %{buildroot}%{_libdir}
 rm -f %{buildroot}/%{_lib}/libcap-ng.*a
 rm -f %{buildroot}/%{_libdir}/python?.?/site-packages/_capng.*a
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun	-n %{libname} -p /sbin/ldconfig
-%endif
-
-%clean
-rm -rf %{buildroot}
-
 %files -n %{libname}
-%defattr(-,root,root,-)
 %doc COPYING.LIB
 %attr(0755,root,root) /%{_lib}/libcap-ng.so.%{major}*
 
 %files -n %{develname}
-%defattr(-,root,root,-)
 %attr(0644,root,root) %{_includedir}/cap-ng.h
 %attr(0755,root,root) %{_libdir}/libcap-ng.so
 %attr(0644,root,root) %{_datadir}/aclocal/cap-ng.m4
@@ -115,12 +100,10 @@ rm -rf %{buildroot}
 %attr(0644,root,root) %{_mandir}/man3/*
 
 %files -n python-%{name}
-%defattr(-,root,root,-)
 %attr(0755,root,root) /%{_libdir}/python?.?/site-packages/_capng.so
 %{python_sitearch}/capng.py*
 
 %files utils
-%defattr(-,root,root,-)
 %doc COPYING
 %attr(0755,root,root) %{_bindir}/*
 %attr(0644,root,root) %{_mandir}/man8/*
