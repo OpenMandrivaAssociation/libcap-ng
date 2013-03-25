@@ -1,6 +1,7 @@
 %define	major 0
 %define	libname %mklibname cap-ng %{major}
 %define develname %mklibname cap-ng -d
+%bcond_with	crosscompile
 
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
@@ -41,6 +42,7 @@ Libcap-ng is a library that makes using posix capabilities easier.
 
 This package contains the development files for the %{name} library.
 
+%if !%{with crosscompile}
 %package -n	python-%{name}
 Summary:	Python bindings for %{name} library
 Group:		Development/Python
@@ -49,6 +51,7 @@ Requires:	%{libname} = %{version}-%{release}
 %description -n	python-%{name}
 The libcap-ng-python package contains the bindings so that %{name} and
 can be used by python applications.
+%endif
 
 %package	utils
 Summary:	Utilities for analysing and setting file capabilities
@@ -66,13 +69,15 @@ file system based capabilities.
 %build
 %configure2_5x \
     --libdir=/%{_lib} \
+%if !%{with crosscompile}
     --with-python
+%else
+   --without-python 
+%endif
 
 %make
 
 %install
-rm -rf %{buildroot}
-
 %makeinstall_std
 
 # Move the symlink
@@ -89,34 +94,22 @@ mv %{buildroot}/%{_lib}/pkgconfig %{buildroot}%{_libdir}
 rm -f %{buildroot}/%{_lib}/libcap-ng.*a
 rm -f %{buildroot}/%{_libdir}/python?.?/site-packages/_capng.*a
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun	-n %{libname} -p /sbin/ldconfig
-%endif
-
-%clean
-rm -rf %{buildroot}
-
 %files -n %{libname}
-%defattr(-,root,root,-)
 %doc COPYING.LIB
 %attr(0755,root,root) /%{_lib}/libcap-ng.so.%{major}*
 
 %files -n %{develname}
-%defattr(-,root,root,-)
 %attr(0644,root,root) %{_includedir}/cap-ng.h
 %attr(0755,root,root) %{_libdir}/libcap-ng.so
 %attr(0644,root,root) %{_datadir}/aclocal/cap-ng.m4
 %{_libdir}/pkgconfig/libcap-ng.pc
 %attr(0644,root,root) %{_mandir}/man3/*
 
+%if !%{with crosscompile}
 %files -n python-%{name}
-%defattr(-,root,root,-)
 %attr(0755,root,root) /%{_libdir}/python?.?/site-packages/_capng.so
 %{python_sitearch}/capng.py*
+%endif
 
 %files utils
 %doc COPYING
