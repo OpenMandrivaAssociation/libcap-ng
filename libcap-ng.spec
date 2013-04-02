@@ -1,6 +1,7 @@
 %define	major 0
 %define	libname %mklibname cap-ng %{major}
 %define develname %mklibname cap-ng -d
+%define _disable_ld_no_undefined 1
 %bcond_with	crosscompile
 
 Summary:	An alternate posix capabilities library
@@ -75,7 +76,6 @@ file system based capabilities.
    --without-python 
 %endif
 
-%make LIBS="-lpython2.7"
 
 %install
 %makeinstall_std
