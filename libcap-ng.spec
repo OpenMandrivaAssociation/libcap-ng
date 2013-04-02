@@ -75,7 +75,7 @@ file system based capabilities.
    --without-python 
 %endif
 
-%make LIBS="-lpython"
+%make LIBS="-lpython2.7"
 
 %install
 %makeinstall_std
