@@ -5,8 +5,8 @@
 
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
-Version:	0.7.1
-Release:	%mkrel 1
+Version:	0.7.3
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://people.redhat.com/sgrubb/libcap-ng
@@ -75,7 +75,7 @@ file system based capabilities.
    --without-python 
 %endif
 
-%make
+%make LIBS="-lpython"
 
 %install
 %makeinstall_std
