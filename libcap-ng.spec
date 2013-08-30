@@ -8,7 +8,7 @@
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
 Version:	0.7.3
-Release:	1
+Release:	2
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://people.redhat.com/sgrubb/libcap-ng
@@ -93,10 +93,10 @@ rm -f %{buildroot}/%{_libdir}/python?.?/site-packages/_capng.*a
 %{_mandir}/man8/*
 
 %files -n %{libname}
-%doc COPYING.LIB
 /%{_lib}/libcap-ng.so.%{major}*
 
 %files -n %{devname}
+%doc COPYING.LIB
 %{_includedir}/cap-ng.h
 %{_libdir}/libcap-ng.so
 %{_datadir}/aclocal/cap-ng.m4
