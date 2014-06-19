@@ -7,16 +7,17 @@
 
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
-Version:	0.7.3
-Release:	7
+Version:	0.7.4
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://people.redhat.com/sgrubb/libcap-ng
 Source0:	http://people.redhat.com/sgrubb/libcap-ng/%{name}-%{version}.tar.gz
+Patch0:		libcap-ng-0.7.4-python3.patch
 BuildRequires:	kernel-headers >= 2.6.11
 BuildRequires:	swig
 BuildRequires:	attr-devel
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python3)
 
 %description
 Libcap-ng is a library that makes using posix capabilities easier.
@@ -60,6 +61,8 @@ can be used by python applications.
 
 %prep
 %setup -q
+%apply_patches
+autoreconf -fi
 
 %build
 %configure2_5x \
@@ -86,6 +89,7 @@ mv %{buildroot}/%{_lib}/pkgconfig %{buildroot}%{_libdir}
 # Remove a couple things so they don't get picked up
 rm -f %{buildroot}/%{_lib}/libcap-ng.*a
 rm -f %{buildroot}/%{_libdir}/python?.?/site-packages/_capng.*a
+rm -rf %{buildroot}/%{_libdir}/python?.?/site-packages/__pycache__
 
 %files utils
 %doc COPYING
@@ -106,6 +110,6 @@ rm -f %{buildroot}/%{_libdir}/python?.?/site-packages/_capng.*a
 %if !%{with crosscompile}
 %files -n python-%{name}
 /%{_libdir}/python?.?/site-packages/_capng.so
-%{python_sitearch}/capng.py*
+%{python3_sitearch}/capng.py*
 %endif
 
