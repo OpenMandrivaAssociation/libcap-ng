@@ -7,13 +7,13 @@
 
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
-Version:	0.7.4
-Release:	3
+Version:	0.7.7
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://people.redhat.com/sgrubb/libcap-ng
 Source0:	http://people.redhat.com/sgrubb/libcap-ng/%{name}-%{version}.tar.gz
-Patch0:		libcap-ng-0.7.4-python3.patch
+#Patch0:		libcap-ng-0.7.4-python3.patch
 BuildRequires:	kernel-headers >= 2.6.11
 BuildRequires:	swig
 BuildRequires:	attr-devel
@@ -65,7 +65,7 @@ can be used by python applications.
 autoreconf -fi
 
 %build
-%configure2_5x \
+%configure \
 	--libdir=/%{_lib} \
 %if !%{with crosscompile}
 	--with-python
