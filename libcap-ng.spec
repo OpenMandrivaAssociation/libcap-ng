@@ -65,6 +65,11 @@ can be used by python applications.
 autoreconf -fi
 
 %build
+%ifarch %{i586}
+export CC=gcc
+export CXX=g++
+%endif
+
 %configure \
 	--libdir=/%{_lib} \
 %if !%{with crosscompile}
