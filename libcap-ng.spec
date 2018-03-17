@@ -61,7 +61,7 @@ can be used by python applications.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 autoreconf -fi
 
 %build
@@ -78,8 +78,10 @@ export CXX=g++
 	--without-python
 %endif
 
+%make_build
+
 %install
-%makeinstall_std
+%make_install
 
 # Move the symlink
 rm -f %{buildroot}/%{_lib}/%{name}.so
@@ -116,4 +118,5 @@ rm -rf %{buildroot}/%{_libdir}/python?.?/site-packages/__pycache__
 %files -n python-%{name}
 /%{_libdir}/python?.?/site-packages/_capng.so
 %{python3_sitearch}/capng.py*
+%{python3_sitearch}/__pycache__/*.pyc
 %endif
