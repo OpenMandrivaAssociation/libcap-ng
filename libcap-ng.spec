@@ -8,13 +8,13 @@
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
 Version:	0.7.9
-Release:	2
+Release:	3
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://people.redhat.com/sgrubb/libcap-ng
 Source0:	http://people.redhat.com/sgrubb/libcap-ng/%{name}-%{version}.tar.gz
 #Patch0:		libcap-ng-0.7.4-python3.patch
-BuildRequires:	kernel-headers >= 2.6.11
+BuildRequires:	kernel-release-headers >= 2.6.11
 BuildRequires:	swig
 BuildRequires:	attr-devel
 BuildRequires:	pkgconfig(python3)
@@ -41,7 +41,7 @@ This package contains the shared %{name} library.
 %package -n %{devname}
 Summary:	Header files, libraries and development documentation for %{name}
 Group:		Development/C
-Requires:	kernel-headers >= 2.6.11
+Requires:	kernel-release-headers >= 2.6.11
 Requires:	%{libname} = %{EVRD}
 Provides:	%{name}-devel = %{EVRD}
 
