@@ -8,7 +8,7 @@
 
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
-Version:	0.8.1
+Version:	0.8.2
 Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
