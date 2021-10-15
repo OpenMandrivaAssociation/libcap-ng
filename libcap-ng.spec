@@ -9,7 +9,7 @@
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
 Version:	0.8.2
-Release:	1
+Release:	2
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://people.redhat.com/sgrubb/libcap-ng
@@ -17,8 +17,8 @@ Source0:	http://people.redhat.com/sgrubb/libcap-ng/%{name}-%{version}.tar.gz
 #Patch0:		libcap-ng-0.7.4-python3.patch
 BuildRequires:	kernel-release-headers >= 2.6.11
 BuildRequires:	swig
-BuildRequires:	attr-devel
-BuildRequires:	pkgconfig(python3)
+BuildRequires:	pkgconfig(libattr)
+BuildRequires:	pkgconfig(python)
 
 %description
 Libcap-ng is a library that makes using posix capabilities easier.
@@ -70,8 +70,7 @@ can be used by python applications.
 %endif
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 autoreconf -fi
 
 %build
@@ -117,8 +116,8 @@ rm -rf %{buildroot}/%{_libdir}/python?.?/site-packages/__pycache__
 %files utils
 %doc COPYING
 %{_bindir}/*
-%{_mandir}/man8/*
-%{_mandir}/man7/*
+%doc %{_mandir}/man8/*
+%doc %{_mandir}/man7/*
 
 %files -n %{libname}
 /%{_lib}/libcap-ng.so.%{major}*
@@ -133,7 +132,7 @@ rm -rf %{buildroot}/%{_libdir}/python?.?/site-packages/__pycache__
 %{_libdir}/libdrop_ambient.so
 %{_datadir}/aclocal/cap-ng.m4
 %{_libdir}/pkgconfig/libcap-ng.pc
-%{_mandir}/man3/*
+%doc %{_mandir}/man3/*
 
 %if !%{with crosscompile}
 %files -n python-%{name}
