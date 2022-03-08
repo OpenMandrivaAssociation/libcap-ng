@@ -9,7 +9,7 @@
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
 Version:	0.8.2
-Release:	2
+Release:	3
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://people.redhat.com/sgrubb/libcap-ng
@@ -80,7 +80,6 @@ export CXX=g++
 %endif
 
 %configure \
-	--libdir=/%{_lib} \
 %if !%{with crosscompile}
 	--with-python3
 %else
@@ -92,26 +91,10 @@ export CXX=g++
 %install
 %make_install
 
-# Move the symlink
-rm -f %{buildroot}/%{_lib}/%{name}.so
-mkdir -p %{buildroot}%{_libdir}
-VLIBNAME=$(ls %{buildroot}/%{_lib}/%{name}.so.*.*.*)
-LIBNAME=$(basename $VLIBNAME)
-ln -s ../../%{_lib}/$LIBNAME %{buildroot}%{_libdir}/%{name}.so
-
-# drop_ambient
-rm -f %{buildroot}/%{_lib}/libdrop_ambient.so
-VLIBNAME=$(ls %{buildroot}/%{_lib}/libdrop_ambient.so.*.*.*)
-LIBNAME=$(basename $VLIBNAME)
-ln -s ../../%{_lib}/$LIBNAME %{buildroot}%{_libdir}/libdrop_ambient.so
-
-# Move the pkgconfig file
-mv %{buildroot}/%{_lib}/pkgconfig %{buildroot}%{_libdir}
-
 # Remove a couple things so they don't get picked up
 rm -f %{buildroot}/%{_lib}/*.*a
-rm -f %{buildroot}/%{_libdir}/python?.?/site-packages/_capng.*a
-rm -rf %{buildroot}/%{_libdir}/python?.?/site-packages/__pycache__
+rm -f %{buildroot}/%{_libdir}/python%{py_ver}/site-packages/_capng.*a
+rm -rf %{buildroot}/%{_libdir}/python%{py_ver}/site-packages/__pycache__
 
 %files utils
 %doc COPYING
@@ -120,10 +103,10 @@ rm -rf %{buildroot}/%{_libdir}/python?.?/site-packages/__pycache__
 %doc %{_mandir}/man7/*
 
 %files -n %{libname}
-/%{_lib}/libcap-ng.so.%{major}*
+%{_libdir}/libcap-ng.so.%{major}*
 
 %files -n %{libdrop}
-/%{_lib}/libdrop_ambient.so.%{major}*
+%{_libdir}/libdrop_ambient.so.%{major}*
 
 %files -n %{devname}
 %doc COPYING.LIB
@@ -136,7 +119,6 @@ rm -rf %{buildroot}/%{_libdir}/python?.?/site-packages/__pycache__
 
 %if !%{with crosscompile}
 %files -n python-%{name}
-/%{_libdir}/python?.?/site-packages/_capng.so
+%{_libdir}/python%{py_ver}/site-packages/_capng.so
 %{python3_sitearch}/capng.py*
-%{python3_sitearch}/__pycache__/*.pyc
 %endif
