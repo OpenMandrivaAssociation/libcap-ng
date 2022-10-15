@@ -2,23 +2,27 @@
 %bcond_with crosscompile
 
 %define major 0
-%define libname %mklibname cap-ng %{major}
-%define libdrop %mklibname drop_ambient %{major}
+%define libname %mklibname cap-ng
+%define oldlibname %mklibname cap-ng 0
+%define libdrop %mklibname drop_ambient
+%define oldlibdrop %mklibname drop_ambient %{major}
 %define devname %mklibname cap-ng -d
 
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
 Version:	0.8.3
-Release:	1
+Release:	2
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://people.redhat.com/sgrubb/libcap-ng
 Source0:	http://people.redhat.com/sgrubb/libcap-ng/%{name}-%{version}.tar.gz
 #Patch0:		libcap-ng-0.7.4-python3.patch
-BuildRequires:	kernel-release-headers >= 2.6.11
+BuildRequires:	kernel-headers
 BuildRequires:	swig
 BuildRequires:	pkgconfig(libattr)
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python3)
+# libcap-ng likes building python2 bindings if it can...
+BuildConflicts:	python2
 
 %description
 Libcap-ng is a library that makes using posix capabilities easier.
@@ -35,6 +39,7 @@ file system based capabilities.
 %package -n %{libname}
 Summary:	Shared %{name} library
 Group:		System/Libraries
+%rename %oldlibname
 
 %description -n	%{libname}
 This package contains the shared %{name} library.
@@ -43,6 +48,7 @@ This package contains the shared %{name} library.
 Summary:	Shared %{name} library
 Requires:	%{libname} = %{EVRD}
 Group:		System/Libraries
+%rename oldlibdrop
 
 %description -n	%{libdrop}
 This package contains the shared %{name} library.
@@ -50,7 +56,7 @@ This package contains the shared %{name} library.
 %package -n %{devname}
 Summary:	Header files, libraries and development documentation for %{name}
 Group:		Development/C
-Requires:	kernel-release-headers >= 2.6.11
+Requires:	kernel-headers
 Requires:	%{libname} = %{EVRD}
 Requires:	%{libdrop} = %{EVRD}
 Provides:	%{name}-devel = %{EVRD}
