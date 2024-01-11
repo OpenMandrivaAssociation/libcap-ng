@@ -21,6 +21,10 @@ BuildRequires:	kernel-headers
 BuildRequires:	swig
 BuildRequires:	pkgconfig(libattr)
 BuildRequires:	pkgconfig(python3)
+# Using slibtool avoids the nasty libtool relink bug
+# during make install when crosscompiling.
+# And it's faster anyway.
+BuildRequires:	slibtool
 # libcap-ng likes building python2 bindings if it can...
 BuildConflicts:	python2
 
@@ -80,11 +84,6 @@ can be used by python applications.
 autoreconf -fi
 
 %build
-%ifarch %{i586}
-export CC=gcc
-export CXX=g++
-%endif
-
 %configure \
 %if !%{with crosscompile}
 	--with-python3
@@ -92,14 +91,12 @@ export CXX=g++
 	--without-python
 %endif
 
-%make_build
+%make_build LIBTOOL=slibtool-shared
 
 %install
-%make_install
+%make_install LIBTOOL=slibtool-shared
 
 # Remove a couple things so they don't get picked up
-rm -f %{buildroot}/%{_lib}/*.*a
-rm -f %{buildroot}/%{_libdir}/python%{py_ver}/site-packages/_capng.*a
 rm -rf %{buildroot}/%{_libdir}/python%{py_ver}/site-packages/__pycache__
 
 %files utils
