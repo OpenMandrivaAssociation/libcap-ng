@@ -10,13 +10,13 @@
 
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
-Version:	0.8.3
-Release:	3
+Version:	0.8.4
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://people.redhat.com/sgrubb/libcap-ng
 Source0:	http://people.redhat.com/sgrubb/libcap-ng/%{name}-%{version}.tar.gz
-#Patch0:		libcap-ng-0.7.4-python3.patch
+Patch0:		https://src.fedoraproject.org/rpms/libcap-ng/raw/rawhide/f/libcap-ng-0.8.5-python-exception.patch
 BuildRequires:	kernel-headers
 BuildRequires:	swig
 BuildRequires:	pkgconfig(libattr)
