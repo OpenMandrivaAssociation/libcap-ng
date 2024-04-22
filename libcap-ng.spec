@@ -16,7 +16,6 @@ License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://people.redhat.com/sgrubb/libcap-ng
 Source0:	http://people.redhat.com/sgrubb/libcap-ng/%{name}-%{version}.tar.gz
-Patch0:		https://src.fedoraproject.org/rpms/libcap-ng/raw/rawhide/f/libcap-ng-0.8.5-python-exception.patch
 BuildRequires:	kernel-headers
 BuildRequires:	swig
 BuildRequires:	pkgconfig(libattr)
