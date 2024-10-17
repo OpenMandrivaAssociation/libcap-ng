@@ -14,7 +14,7 @@ Version:	0.8.5
 Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
-Url:		http://people.redhat.com/sgrubb/libcap-ng
+Url:		https://people.redhat.com/sgrubb/libcap-ng
 Source0:	http://people.redhat.com/sgrubb/libcap-ng/%{name}-%{version}.tar.gz
 BuildRequires:	kernel-headers
 BuildRequires:	swig
