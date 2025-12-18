@@ -16,6 +16,8 @@ License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://people.redhat.com/sgrubb/libcap-ng
 Source0:	http://people.redhat.com/sgrubb/libcap-ng/%{name}-%{version}.tar.gz
+BuildRequires:	autoconf
+BuildRequires:	make
 BuildRequires:	kernel-headers
 BuildRequires:	swig
 BuildRequires:	pkgconfig(libattr)
