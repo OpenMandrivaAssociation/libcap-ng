@@ -17,6 +17,7 @@ Group:		System/Libraries
 Url:		https://people.redhat.com/sgrubb/libcap-ng
 Source0:	http://people.redhat.com/sgrubb/libcap-ng/%{name}-%{version}.tar.gz
 BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	make
 BuildRequires:	kernel-headers
 BuildRequires:	swig
