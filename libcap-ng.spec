@@ -19,6 +19,7 @@ Source0:	http://people.redhat.com/sgrubb/libcap-ng/%{name}-%{version}.tar.gz
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	make
+BuildRequires:	libtool
 BuildRequires:	kernel-headers
 BuildRequires:	swig
 BuildRequires:	pkgconfig(libattr)
