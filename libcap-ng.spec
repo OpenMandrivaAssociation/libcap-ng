@@ -16,6 +16,7 @@ License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://people.redhat.com/sgrubb/libcap-ng
 Source0:	http://people.redhat.com/sgrubb/libcap-ng/%{name}-%{version}.tar.gz
+BuildRequires:	libtool-base
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	make
