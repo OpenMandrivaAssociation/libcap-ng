@@ -22,7 +22,7 @@ BuildRequires:	automake
 BuildRequires:	make
 BuildRequires:	libtool
 BuildRequires:	kernel-headers
-BuildRequires:	swig
+#BuildRequires:	swig
 BuildRequires:	pkgconfig(libattr)
 BuildRequires:	pkgconfig(python3)
 # Using slibtool avoids the nasty libtool relink bug
