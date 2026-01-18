@@ -86,6 +86,7 @@ can be used by python applications.
 
 %prep
 %autosetup -p1
+touch NEWS
 autoreconf -fi
 
 %build
