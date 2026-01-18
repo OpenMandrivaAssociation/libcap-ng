@@ -10,8 +10,8 @@
 
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
-Version:	0.8.5
-Release:	2
+Version:	0.9
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://people.redhat.com/sgrubb/libcap-ng
@@ -23,6 +23,7 @@ BuildRequires:	make
 BuildRequires:	libtool
 BuildRequires:	kernel-headers
 BuildRequires:	swig
+BuildRequires:	python3
 BuildRequires:	pkgconfig(libattr)
 BuildRequires:	pkgconfig(python3)
 # Using slibtool avoids the nasty libtool relink bug
@@ -85,6 +86,7 @@ can be used by python applications.
 
 %prep
 %autosetup -p1
+touch NEWS
 autoreconf -fi
 
 %build
