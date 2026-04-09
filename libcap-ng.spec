@@ -108,6 +108,7 @@ rm -rf %{buildroot}/%{_libdir}/python%{py_ver}/site-packages/__pycache__
 %files utils
 %doc COPYING
 %{_bindir}/*
+%{_datadir}/bash-completion/completions/libcap-ng.bash_completion
 %doc %{_mandir}/man8/*
 %doc %{_mandir}/man7/*
 
