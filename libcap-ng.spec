@@ -10,12 +10,12 @@
 
 Summary:	An alternate posix capabilities library
 Name:		libcap-ng
-Version:	0.9
+Version:	0.9.3
 Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://people.redhat.com/sgrubb/libcap-ng
-Source0:	http://people.redhat.com/sgrubb/libcap-ng/%{name}-%{version}.tar.gz
+Source0:	https://github.com/stevegrubb/libcap-ng/archive/v%{version}/%{name}-%{version}.tar.gz
 BuildRequires:	libtool-base
 BuildRequires:	autoconf
 BuildRequires:	automake
